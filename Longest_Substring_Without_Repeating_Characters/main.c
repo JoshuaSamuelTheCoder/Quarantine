@@ -1,4 +1,4 @@
-nt isUnique(char *s, int cheat) {
+int isUnique(char *s, int cheat) {
 
     if(cheat < strlen(s)) {
         return cheat;
