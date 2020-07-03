@@ -28,6 +28,8 @@ class Solution(object):
         for i in nums:
             freq[i] = freq.get(i, 0) + 1
 
-        sorted_lst = [ky for ky,v in sorted(freq.items(), key = lambda item: -item[1])]
+        sorted_lst = [ky for i, (ky,v) in enumerate(sorted(freq.items(), key = lambda item: -item[1])) if i < k]
 
-        return sorted_lst[:1] if k == 1 else sorted_lst[:k]
+        return sorted_lst
+
+        
