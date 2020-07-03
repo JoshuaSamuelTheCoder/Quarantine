@@ -79,9 +79,12 @@ class Solution(object):
         :rtype: bool
         """
 
-        self.s = s
-        self.p = p
 
+
+        self.s = s
+        #self.p = p
+        self.p = ''.join(["*" if "*" in k else k[0]*(len(list(k[1]))) for k in groupby(p)])
+        print(self.p)
         self.map = {}
 
         return self.dp(0,0)
