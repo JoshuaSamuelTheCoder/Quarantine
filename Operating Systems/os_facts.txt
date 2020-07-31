@@ -1,0 +1,56 @@
+OPERATING SYSTEMS AND ITS TYPES
+
+Q1) What is a Operating System?
+- controls execution of application programme
+- act as interface between user and computer
+
+Q2) What does an Operating System includes ?
+-traffic controller
+-scheduler
+-memory management module
+-i/o programme
+-file system
+
+Q3) What is the use of an OS?
+-hardware abstraction
+-resource management
+
+Q4) What are various types of OS?
+batch operating
+
+    doesn't interact with computer directly
+    less idle time,multiple user,handles large work
+    costly,hard to debug
+    ex: payroll systems,bank statements
+    time sharing
+    task is divided into time quantums(tq)
+    multitasking systems
+    less chances of duplication
+    low relablity
+    ex: unix
+    distributed
+    loosely coupled systems
+    processors differ in size and functions
+    high exchange speed,reduces load on host,computing power is fast
+    expensive,failure of main network
+    ex: locus
+    netwok
+    common server
+    tightly coupled systems
+    stable,enhanced security,updating is easy
+    costly server,difficult to maintain
+    ex: window server,linux,mac-os
+    real time
+    time accurate (defence,nuclear power plants)
+    types:
+        hard real time:
+        * strict time constraint
+        * no virtual memory
+        2) soft real time:
+        * less strict time constraint
+    task-shifting is easy,application focused,error free
+    limited task,heavy resource requirements,complex algorithm based
+    ex: wepon system,air traffic control system
+
+upcoming topics:
+multiprogramming,multiprocessing,multitasking,multithreading**,bios,uefi,system booting
