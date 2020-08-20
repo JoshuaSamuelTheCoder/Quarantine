@@ -48,7 +48,6 @@ class WordDictionary(object):
 
         while i < len(word):
             ch = word[i]
-            print(ch)
             if ch == ".":
                 lst_ch = cur.keys()
                 ans = False
