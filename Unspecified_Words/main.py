@@ -38,9 +38,6 @@ class Solution(object):
         cur["*"] = True
 
     def search_helper(self, word, cur, i):
-        if word == "":
-            return 0
-
         while i < len(word):
             ch = word[i]
             if ch == "?":
@@ -48,9 +45,8 @@ class Solution(object):
                 ans = 0
                 i += 1
                 for c in lst_ch:
-                    if c != "?":
-                        new_ans = self.search_helper(word, cur[c], i)
-                        ans += new_ans
+                    new_ans = self.search_helper(word, cur[c], i)
+                    ans += new_ans
                 return ans
             elif ch not in cur:
                 return 0
@@ -64,7 +60,6 @@ class Solution(object):
     def search(self, word):
         return self.search_helper(word, self.trie, 0)
 
-
 if __name__ == "__main__":
     sol = Solution()
     sol.addWord("cat")
@@ -73,6 +68,6 @@ if __name__ == "__main__":
     sol.addWord("man")
     sol.addWord("pen")
 
-    lst = ["?at", "ma?", "?a?", "??n"]
+    lst = ["?at", "ma?", "?a?", "??n", ""]
     for word in lst:
         print(word + " is: " + str(sol.search(word)))
