@@ -30,16 +30,15 @@ Output: "it is ab that this solution is ac"
 
 
 Constraints:
-
-1 <= dictionary.length <= 1000
-1 <= dictionary[i].length <= 100
-dictionary[i] consists of only lower-case letters.
-1 <= sentence.length <= 10^6
-sentence consists of only lower-case letters ans spaces.
-The number of words in sentence is in the range [1, 1000]
-The length of each word in sentence is in the range [1, 1000]
-Each two words in sentence will be separted by exactly one space.
-sentence doesn't have leading or trailing spaces.
+    1 <= dictionary.length <= 1000
+    1 <= dictionary[i].length <= 100
+    dictionary[i] consists of only lower-case letters.
+    1 <= sentence.length <= 10^6
+    sentence consists of only lower-case letters ans spaces.
+    The number of words in sentence is in the range [1, 1000]
+    The length of each word in sentence is in the range [1, 1000]
+    Each two words in sentence will be separted by exactly one space.
+    sentence doesn't have leading or trailing spaces.
 """
 
 class Solution(object):
