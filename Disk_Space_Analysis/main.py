@@ -61,3 +61,6 @@ def maxOfAllMin(numComputer, hardDiskSpace, segmentLength):
             ans = min(minSpace, hardDiskSpace[r])
             minSpace = max(minSpace, ans)
     return minSpace
+
+if __name__ == "__main__":
+    print(maxOfAllMin(6,[3, 2, 1, 4, 2, 2],3))
