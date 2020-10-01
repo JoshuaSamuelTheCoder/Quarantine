@@ -65,16 +65,17 @@ class Solution():
         and self.compare(interval[1], restriction1[1]) <= 0 and self.compare(interval[1], restriction2[1]) <= 0
 
     def flatten(self, lst1, dailyBound):
+        new_lst = [["0:00", dailyBound[0]]]
         i = 0
         while i < len(lst1):
-            if i <len(lst1) and i+1 < len(lst1):
-                if lst1[i][1] == lst1[i+1][0]:
-                    lst1[i] = [lst1[i][0], lst1[i+1][1]]
-                    lst1.pop(i+1)
+            if i <len(lst1) and i+1 < len(lst1) and lst1[i][1] == lst1[i+1][0]:
+                new_lst.append([lst1[i][0], lst1[i+1][1]])
+                i += 1
+            else:
+                new_lst.append(lst1[i])
             i += 1
-
-        return [["0:00", dailyBound[0]]] + lst1 + [[dailyBound[1], "24:00"]]
-
+        new_lst.append([dailyBound[1], "24:00"])
+        return new_lst
 
     def calculateOverlap(self, lst1, dailyBound1, lst2, dailyBound2, meetingLength):
 
@@ -90,16 +91,11 @@ class Solution():
             first_time = lst1[i]
             second_time = lst2[j]
 
-
             succ, overlap, i,j = self.twoIntervalOverlap(first_time, second_time, i, j)
             if succ:
                 rtn_lst.append(overlap)
 
         return rtn_lst
-
-
-
-
 
 if __name__ == "__main__":
     sol = Solution()
