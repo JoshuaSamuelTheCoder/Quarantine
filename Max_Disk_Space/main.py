@@ -20,10 +20,8 @@ Example 1:
     numComputer = 3
     hardDiskSpace = [8,2,4]
     segmentLength = 2
-
     Output:
     2
-
     Explanation:
     In this array of computers, the subarrays of size 2 are [8,2] and [2,4]. Thus, the initial analysis returns 2 and 2 because those are the
     minima for the segments. Finally, the maximum of these values is 2.
@@ -46,6 +44,7 @@ TestCase 2:
     Explanation:
     The segment length is equal to the number of computers, so the minimum value from the segment is 10. Since there are no other segments, the maximum value is 10.
 """
+
 def maxOfAllMin(numComputer, hardDiskSpace, segmentLength):
     l,r = 0,0
     subst = hardDiskSpace[:segmentLength]

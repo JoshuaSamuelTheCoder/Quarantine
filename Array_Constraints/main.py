@@ -25,9 +25,9 @@ Example 1:
     Output:
     4
     Explanation:
-        Subtract 1 from the first group, making the list [2,1,3,4]
-        Rearrange the list into [1,2,3,4]
-        The final maximum number of items that can be packaged in the last group is 4.
+    Subtract 1 from the first group, making the list [2,1,3,4]
+    Rearrange the list into [1,2,3,4]
+    The final maximum number of items that can be packaged in the last group is 4.
 Example 2:
     Input:
     numGroups = 4
@@ -53,6 +53,7 @@ TestCase 2:
     Then, the elements can be adjusted as [1,2,3,4]
     Therefore, the maximum value of the final element is 4
 """
+
 def getMaxValue(numGroups, arr):
     arr.sort()
 
