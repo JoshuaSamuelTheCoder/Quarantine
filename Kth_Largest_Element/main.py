@@ -19,6 +19,4 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        nums.sort(key=lambda x:-x)
-        return nums[k-1]
-        
+        return heapq.nlargest(k,nums)[-1]
