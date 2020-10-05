@@ -20,24 +20,41 @@ Return an integer representing the maximum items that can be packaged for the fi
 
 Example 1:
 Input:
-numGroups = 4
-arr = [3,1,3,4]
+    numGroups = 4
+    arr = [3,1,3,4]
 
-Output:
-4
+    Output:
+    4
 
-Explanation:
-Subtract 1 from the first group, making the list [2,1,3,4]
-Rearrange the list into [1,2,3,4]
-The final maximum number of items that can be packaged in the last group is 4.
-
+    Explanation:
+    Subtract 1 from the first group, making the list [2,1,3,4]
+    Rearrange the list into [1,2,3,4]
+    The final maximum number of items that can be packaged in the last group is 4.
 Example 2:
-Input:
-numGroups = 4
-arr = [1,1,1,1]
+    Input:
+    numGroups = 4
+    arr = [1,1,1,1]
 
-Output:
-1
+    Output:
+    1
+TestCase 1:
+    Input:
+    4
+    [1,3,2,2]
+    Output:
+    3
+    Explanation:
+    These elements can be rearranged as [1,2,2,3], which results in a maximum value of 3 for the final element as it follows the constraints.
+TestCase 2:
+    Input:
+    4
+    [3,2,3,5]
+    Output:
+    4
+    Explanation:
+    These elements can be rearranged as  [2,3,3,5]
+    Then, the elements can be adjusted as [1,2,3,4]
+    Therefore, the maximum value of the final element is 4
 """
 def getMaxValue(numGroups, arr):
     arr.sort()
