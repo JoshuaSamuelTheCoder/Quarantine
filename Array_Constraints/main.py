@@ -19,22 +19,19 @@ Output:
 Return an integer representing the maximum items that can be packaged for the final group of the list given the conditions above.
 
 Example 1:
-Input:
+    Input:
     numGroups = 4
     arr = [3,1,3,4]
-
     Output:
     4
-
     Explanation:
-    Subtract 1 from the first group, making the list [2,1,3,4]
-    Rearrange the list into [1,2,3,4]
-    The final maximum number of items that can be packaged in the last group is 4.
+        Subtract 1 from the first group, making the list [2,1,3,4]
+        Rearrange the list into [1,2,3,4]
+        The final maximum number of items that can be packaged in the last group is 4.
 Example 2:
     Input:
     numGroups = 4
     arr = [1,1,1,1]
-
     Output:
     1
 TestCase 1:
