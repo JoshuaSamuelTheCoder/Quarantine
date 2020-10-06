@@ -1,0 +1,6 @@
+Create a puppet script hellopuppet.pp in the directory /var/save/puppet_hello. The script when executed should
+write "Hello Puppet" without quotes to a file: /var/save/puppet_hello/hellopuppet.txt
+
+Note:
+To install puppet run apt-get -y install puppet in ubuntu
+You have sudo permissions

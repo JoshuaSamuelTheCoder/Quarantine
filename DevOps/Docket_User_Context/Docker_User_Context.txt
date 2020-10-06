@@ -1,0 +1,18 @@
+The task is to complete a file stub "/home/ubuntu/xxxxxx-docker-user-context/script.sh" with one or more steps that do the following:
+Runs a new Docker container "my-container" from the "busybox" image (latest tag) in interactive background mode, without pseudo-TTY allocation
+and under the user "nobody".
+
+Note:
+The completed solution will be evalutated in a new, clean environment. Be sure everything is in the "/home/ubuntu/xxxxx-docker-user-context" folder.
+All the tasks should be done within a simple "bash /home/ubuntu/xxxxxx-docker-user-context/script.sh" execution.
+Docker is already installed.
+You have sudo access.
+
+Grading:
+The execusion result of "docker exec -i my-container whoami" outputs "nobody".
+
+Commands:
+docker stop my-container
+docker rm my-container
+bash script.sh
+docker exec -i my-container whoami ---> "nobody"
