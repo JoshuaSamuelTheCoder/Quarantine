@@ -59,7 +59,7 @@ The chessboard is of size 6 x 6. Start at the position (5,1). Move 2 steps up an
 Move 1 step up and 2 steps right to reach the position (0,5), The minimum number of moves to move from the position (5,1) to position (0,5) is 3.
 """
 from collections import deque
-def Solution():
+class Solution():
 
     def isValid(self, location):
         x,y = location
