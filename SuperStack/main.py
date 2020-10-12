@@ -33,6 +33,7 @@ from collections import deque
 class SuperStack():
     def __init__(self):
         self.stack = deque()
+        self.offset = []
 
     def pop(self):
         p = self.offset.pop()
@@ -66,7 +67,7 @@ class SuperStack():
         for op in operations:
             self.runOp(op)
             print(self.peek())
-            
+
 def superStack(operations):
     ss = SuperStack()
     return ss.runOperations(operations)
