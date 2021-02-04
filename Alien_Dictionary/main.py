@@ -1,6 +1,10 @@
 """
-Alphabet: b f g q
+Given a lexically graphically sorted list of alien words, return the order of
+the alphabet that fits the assortment.
 
+Alphabet (in no particular order): <b f g q>
+
+TestCase 1:
 bgg
 fbq
 fqf
@@ -8,6 +12,16 @@ ffq
 gfg
 
 b -> q - > f -> g
+
+TestCase 2:
+bgg
+fbq
+ffq
+fqf
+gfg
+
+b - > f -> g -> q
+
 
 class G:
     def add(self, c1, c2) #adds edge
@@ -98,7 +112,8 @@ class OrderedGraph(object):
 
 if __name__ == "__main__":
     g = Graph()
-    lst = ["bgg", "fbq", "fqf", "ffq", "gfg"]
+    lst = ["bgg", "fbq", "fqf", "ffq", "gfg"] #TestCase 1
+    lst2 = ["bgg", "fbq", "ffq", "fqf", "gfg"] #TestCase 2
 
     orderedG = OrderedGraph()
     orderedG.genGraph(lst)
