@@ -76,6 +76,7 @@ class OrderedGraph(object):
         pass
 
     def samePrefix(self, wordA, wordB, index):
+        #obsolete
         for k in range(index+1):
             if wordA[k] != wordB[k]:
                 return False
@@ -88,9 +89,14 @@ class OrderedGraph(object):
             if i == 0:
                 continue
             elif i > 0:
+                samePrefix = True
                 for j, ch in enumerate(word):
-                    if j == 0 or (j > 0 and self.samePrefix(wordList[i-1], word, j-1)):
+                    if j == 0:
                         self.processEdge(wordList[i-1][j], ch)
+                    elif j > 0:
+                        samePrefix = samePrefix and wordList[i-1][j-1] == word[j-1]
+                        if samePrefix:
+                            self.processEdge(wordList[i-1][j], ch)
 
     def pullAlphabet(self):
         zeroNode = None
