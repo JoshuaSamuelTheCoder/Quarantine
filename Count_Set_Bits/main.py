@@ -16,9 +16,16 @@ Binary representation of 13 is 1101 and has 3 set bits
 class Solution(object):
     def countBits(self, num):
         count = 0
-        while num > 0:
+        while num != 0:
             count += num & 1
             num >>= 1
+        return count
+        
+    def countBitsOptimal(self, num):
+        count = 0
+        while num != 0:
+            num = num & (num - 1)
+            count += 1
         return count
 
 
