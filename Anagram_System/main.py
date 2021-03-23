@@ -35,7 +35,7 @@
 
 class AnagramSystem(object):
     def __init__(self):
-        self.freq = {}  #hashmap of keys: str, values: [] #
+        self.freq = {}  #hashmap of keys: str, values: set()
 
     def get_anagram(self, st):
         new_s = str(sorted(st)) #key
@@ -43,14 +43,11 @@ class AnagramSystem(object):
 
         if new_s in self.freq:
             lst = self.freq[new_s]
-            #rtn_lst = [s for s in lst if s != st] #O(n)
+
             rtn_lst = set(lst) #O(n)
             if st in rtn_lst:
                 rtn_lst.remove(st)
             self.freq[new_s].add(st)
-
-            #if st not in self.freq: #O(1)
-            #    self.freq[new_s].append(st)
         else:
             self.freq[new_s] = set()
             self.freq[new_s].add(st)
