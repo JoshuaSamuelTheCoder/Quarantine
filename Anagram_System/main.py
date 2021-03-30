@@ -37,8 +37,18 @@ class AnagramSystem(object):
     def __init__(self):
         self.freq = {}  #hashmap of keys: str, values: set()
 
+    def getKey(self, st):
+        letter_freq = [0]*26
+        s = ""
+        for ch in st:
+            letter_freq[ord(ch) - ord('a')] += 1
+        for n in letter_freq:
+            s += str(n)
+        return s
+
     def get_anagram(self, st):
-        new_s = str(sorted(st)) #key
+        #new_s = str(sorted(st)) #O(nlogn)
+        new_s = self.getKey(st) #O(n)
         rtn_lst = set()
 
         if new_s in self.freq:
