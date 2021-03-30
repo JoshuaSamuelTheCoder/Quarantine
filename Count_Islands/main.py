@@ -1,72 +1,87 @@
 """
-Given a 2D matrix, where 1 represents land and 0 represents water,
-count how many islands are present
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 
-Input:
-[
-    [0, 0, 0, 0, 0],
-    [1, 1, 0, 0, 0],
-    [1, 1, 0, 1, 1],
-    [0, 0, 0, 1, 0]
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+
+
+Example 1:
+
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
 ]
+Output: 1
+Example 2:
 
-Island 1 = [(1, 0), (1, 1), (2, 0), (2, 2)]
-Island 2 = [(2, 3), (2, 4), (3, 3)]
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
 """
+#isValid -> check if a node is within the matrix
+#getNeighbors -> get neighbors from a given node
+#dfs -> run dfs on a given node
+#numberOfIslands -> iterate through matrix, append numbers to a list
+
 from collections import deque
 
-class Islands(object):
+class Solution(object):
 
-    def __init__(self):
-        pass
-
-    def isValid(self, position):
-        x,y = position
-        if x >= 0 and x < self.n and y >= 0 and y < self.m:
+    def isValid(self, loc):
+        x, y  = loc
+        if x >= 0 and x < len(self.grid) and y >= 0 and y < len(self.grid[x]):
             return True
         return False
 
-    def getNeighbors(self, position):
-        x,y = position
-        for i in range(x-1, x+2):
-            for j in range(y-1, y+2):
-                if (i,j) not in self.seen and self.isValid((i,j)):
-                    if self.matrix[i][j] == 1:
-                        self.seen.add((i,j))
+    def getValidNeighbors(self, loc):
+        x, y = loc
+        neighbors = []
+        for dx,dy in self.paths:
+            new_x = x + dx
+            new_y = y + dy
+            node = (new_x, new_y)
+            if self.isValid(node) and node not in self.seen:
+                neighbors.append(node)
+        return neighbors
 
-    def bfs(self):
-        count = 0
 
-        while len(self.q) > 0:
-            item = self.q.popleft()
-            if item not in self.seen:
-                count += 1
-            neighbors = self.getNeighbors(item)
-            
-        return count
+    def dfs(self):
 
-    def countIslands(self, matrix):
-        #main method
-        self.q = deque() #circular array with O(1) popleft() and popright()
+        while len(self.job_lst) > 0:
+            item = self.job_lst.pop() #O(1)
+
+            neighbors = self.getValidNeighbors(item)
+
+            for n in neighbors:
+                i,j = n
+                if self.grid[i][j] == "1":
+                    self.seen.add(n)
+                    self.job_lst.append(n)
+        self.count += 1
+
+
+    def numIslands(self, grid):
+
+        self.grid = grid
         self.seen = set()
-        self.n = len(matrix)
-        self.m = len(matrix[0])
-        self.matrix = matrix
-
-        for i in range(self.n):
-            for j in range(self.m):
-                if matrix[i][j] == 1:
-                    self.q.append((i, j))
-
-        return self.bfs()
+        self.job_lst = []
+        self.count = 0
+        #self.paths = ((-1,-1), (-1,0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1))
+        self.paths = [(-1,0), (0,-1), (0,1), (1,0)]
 
 
-if __name__ == "__main__":
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                node = (i,j)
+                if node not in self.seen and grid[i][j] == "1":
+                    self.seen.add(node)
+                    self.job_lst.append((i,j))
+                    self.dfs()
 
-    matrix = [
-        [0, 0, 0, 0, 0],
-        [1, 1, 0, 0, 0],
-        [1, 1, 0, 1, 1],
-        [0, 0, 1, 1, 0]]
-    island = Islands()
-    print(island.countIslands(matrix))
+        return self.count
