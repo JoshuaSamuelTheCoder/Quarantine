@@ -19,11 +19,27 @@ Input: nums = [1]
 Output: 1
 */
 
-int singleNumber(int* nums, int numsSize){
-    int freq = 0;
+#include <stdio.h>
 
-    for(int i = 0; i < numsSize; ++i) {
-        freq ^= nums[i];
+int oddTimes(int *nums, int numsSize) {
+
+    if(numsSize == 1) {
+        return nums[0];
     }
-    return freq;
+
+    int n = nums[0];
+    for(int i = 1; i < numsSize; i++) {
+        n ^= nums[i];
+    }
+
+    return n;
+}
+
+
+int main() {
+    int arr[] = {1,2,3,2,3,1,3};
+    int arr2[] = {5,7,2,7,5,2,5};
+    printf("%d\n", oddTimes(arr, sizeof(arr)/sizeof(int)));
+    printf("%d\n", oddTimes(arr2, sizeof(arr2)/sizeof(int)));
+    return 0;
 }
