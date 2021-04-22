@@ -17,39 +17,28 @@ Explanation: Your function should return length = 5, with the first five element
 
 int removeDuplicates(int* nums, int numsSize){
 
-    if (nums == NULL) {
-        return 0;
-    } else if (numsSize <= 1) {
+    if(numsSize <= 1 || nums == NULL) {
         return numsSize;
     }
 
     int index = -1;
-    int duplicates = 0;
-    int value = nums[0];
+    int seen = nums[0];
 
-    for(int i = 1; i < numsSize; ++i) { //[0,1,2,2,2,3,4] -> //[0,1,2,3,4]
-        if (nums[i] == value) {
-            if (index == -1) {
-                index = i;
-                duplicates = 1;
-            } else {
-                duplicates++;
-            }
-        } else {
-            if(duplicates > 0) {
-                nums[index] = nums[i];
-                index++;
-            }
+    for(int i = 1; i < numsSize; i++) {
+        if(index == -1 && nums[i] == seen) {
+            index = i;
+            seen = nums[i];
+        } else if(index != -1 && nums[i] != seen) {
+            seen = nums[i];
+            nums[index] = nums[i];
+            index++;
         }
-        value = nums[i];
+        seen = nums[i];
     }
-    /* Code to reallocate array (not necessary)
-    if(index != -1 && numsSize > index) {
-        nums = (int*)realloc(nums, index*sizeof(int));
+
+    if(index == -1) {
+        return numsSize;
     }
-    */
-    if (index == -1) {
-        index = numsSize;
-    }
+
     return index;
 }
