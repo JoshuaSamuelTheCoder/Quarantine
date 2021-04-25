@@ -15,56 +15,55 @@ Input: l1 = [], l2 = [0]
 Output: [0]
 */
 
-/**
+/*
  * Definition for singly-linked list.
  * struct ListNode {
  *     int val;
  *     struct ListNode *next;
  * };
- */
+*/
 
+#include <limits.h>
 struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 
-    if(l1 == NULL) {
-        return l2;
-    } else if(l2 == NULL) {
-        return l1;
-    }
+    struct ListNode *t1 = l1;
+    struct ListNode *t2 = l2;
 
-    struct ListNode* l3;
-    struct ListNode* p1 = l1;
-    struct ListNode* p2 = l2;
+    struct ListNode *head = NULL;
+    struct ListNode *cur = NULL;
 
-    if(p1->val < p2->val) {
-        l3 = p1;
-        p1 = p1->next;
-    } else {
-        l3 = p2;
-        p2 = p2->next;
-    }
-    struct ListNode* p3 = l3;
+    while(t1 != NULL || t2 != NULL) {
 
-    while(p1 != NULL || p2 != NULL) {
-        if (p1 == NULL) {
-            p3->next = p2;
-            p2 = p2->next;
-            p3 = p3->next;
-            continue;
-        } else if(p2 == NULL) {
-            p3->next = p1;
-            p1 = p1->next;
-            p3 = p3->next;
-            continue;
+        int v1 = INT_MAX;
+        int v2 = INT_MAX;
+        if(t1 != NULL) {
+            v1 = t1->val;
+        }
+        if(t2 != NULL) {
+            v2 = t2->val;
         }
 
-        if(p1->val < p2->val) {
-            p3->next = p1;
-            p1 = p1->next;
+        if(v1 <= v2) {
+            if(head == NULL) {
+                head = t1;
+            } else {
+                cur->next = t1;
+            }
+            t1 = t1->next;
         } else {
-            p3->next = p2;
-            p2 = p2->next;
+             if(head == NULL) {
+                head = t2;
+            } else {
+                cur->next = t2;
+            }
+            t2 = t2->next;
         }
-        p3 = p3->next;
+        if(cur == NULL) {
+            cur = head;
+        } else {
+            cur = cur->next;
+        }
+
     }
-    return l3;
+    return head;
 }
