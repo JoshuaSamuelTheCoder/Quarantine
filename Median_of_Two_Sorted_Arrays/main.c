@@ -18,28 +18,69 @@ nums2 = [3, 4]
 
 The median is (2 + 3)/2 = 2.5
 */
+
+#include <limits.h>
+#define NUM_LISTS 2
+
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
 
-    int n = nums1Size + nums2Size;
-    int *arr = malloc(sizeof(float)*(n));
 
-    int one_pointer = 0;
-    int two_pointer = 0;
-    for(int i = 0; i < n; i++) {
-       if(two_pointer == nums2Size || (one_pointer < nums1Size && nums1[one_pointer] <= nums2[two_pointer])) {
-           arr[i] = nums1[one_pointer];
-           one_pointer++;
-       } else {
-           arr[i] = nums2[two_pointer];
-           two_pointer++;
-       }
-       //printf("%d,", arr[i]);
-    }
-
-    if(n % 2 == 1) {
-        return arr[n/2];
+    int totalSize = nums1Size + nums2Size;
+    int checkMedian;
+    int medianDivide;
+    if(totalSize % 2 == 0) {
+        checkMedian = totalSize/2 - 1;
+        medianDivide = 2;
     } else {
-        printf("%f", (float)((arr[n/2-1] + arr[n/2])/2.0));
-        return (float)((arr[n/2-1] + arr[n/2])/2.0);
+        checkMedian = totalSize/2;
+        medianDivide = 1;
     }
+
+    int i = 0, j = 0;
+    int counter = 0;
+    int rtn_vals[NUM_LISTS] = {0};
+    int index = 0;
+
+    while(i < nums1Size || j < nums2Size) {
+
+        int v1 = INT_MAX;
+        int v2 = INT_MAX;
+
+        if(i < nums1Size) {
+            v1 = nums1[i];
+        }
+        if(j < nums2Size) {
+            v2 = nums2[j];
+        }
+
+        int val;
+        if(v1 <= v2) {
+            val = nums1[i];
+            i++;
+        } else {
+            val = nums2[j];
+            j++;
+        }
+        if (counter >= checkMedian) {
+            if(totalSize % 2 != 0) {
+                rtn_vals[0] = val;
+                break;
+            } else {
+                rtn_vals[index] = val;
+                index++;
+                if(index > 1) {
+                    break;
+                }
+            }
+        }
+        counter++;
+    }
+
+    double rtn_val = 0;
+    for(int i = 0; i < NUM_LISTS; i++) {
+        rtn_val += rtn_vals[i];
+    }
+    rtn_val = rtn_val/medianDivide;
+
+    return rtn_val;
 }
