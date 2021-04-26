@@ -28,35 +28,24 @@ Constraints:
 nums contains distinct values sorted in ascending order.
 """
 
-#binary search target -> index,
-#l,r
-def findIndex(arr, target):
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
 
-     l, r = 0, len(arr)-1
-     ans = 0
-     prev_element = None
-     while(l < r):
-         mid = (l+r)//2
-         if arr[mid] == prev_element:
-             break
-         prev_element = arr[mid]
-         if arr[mid] > target:
-             r = mid
-         elif arr[mid] < target:
-             l = mid
-         else:
-             return mid
-     #l,r
-     if arr[l] < target and arr[r] > target:
-         return r
-     if arr[l] < target and arr[r] < target:
-         return r+1
-     elif arr[l] > target:
-         return l
+        l, r = 0, len(nums)-1
+        ans = 0
 
- if __name__ == "__main__":
-     print(findIndex([1,3,5,6], 5))
-     print(findIndex([1,3,5,6], 2))
-     print(findIndex([1,3,5,6], 7))
-     print(findIndex([1,3,5,6], 0))
-     print(findIndex([1], 0))
+        while(l <= r):
+            mid = (l+r)//2
+
+            if nums[mid] > target:
+                r = mid-1
+            elif nums[mid] < target:
+                l = mid+1
+            else:
+                return mid
+        return l
